@@ -1,0 +1,5 @@
+boostrap 5 quick snippets
+laravel blade snipppets
+
+snake case - file and folder
+pascal case - controller mod
