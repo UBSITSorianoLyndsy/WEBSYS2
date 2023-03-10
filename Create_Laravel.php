@@ -5,15 +5,17 @@
 
 @section('content')
     <p>Student Form Here</p>
-    <form action="">
-        Student ID: <input type="text" name="name"><br>
-        First Name: <input type="text" name="name"><br>
-        Middle Name: <input type="text" name="name"><br>
-        Last Name: <input type="text" name="name"><br>
-        Age: <input type="number" name="name"><br>
-        Course Code: <select name="CourseCode" id="coursecode">
+    <form action="{{route('students.store')}}" method="POST">
+        @csrf <!--toke for security prposes--->
+        <!--name = for php, id = for js-->
+        Student ID: <input type="text" name="studentId"><br>
+        First Name: <input type="text" name="firstName"><br>
+        Middle Name: <input type="text" name="middleName"><br> 
+        Last Name: <input type="text" name="lastName"><br>
+        Age: <input type="number" name="age"><br>
+        Course Code: <select name="courseId">
         @foreach($courses as $course_data)
-        <option value="{{$course_data->courseCode}}">{{$course_data->courseCode}}</option>
+        <option value="{{$course_data->id}}">{{$course_data->courseCode}}</option>
         @endforeach
         </select><br>
         <input type="submit">
@@ -25,7 +27,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Course; //add for create function
+use App\Models\Course;
 use App\Models\Student; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //----Query Builder----library (commands)
@@ -69,10 +71,12 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $courses = DB::table('course')->get(); //use instead of the shortcut because course will become courses
+        $courses = DB::table('course')->get();
         
         //calls the form
         return view('students.students_create', compact('courses'));
+
+        $courses = DB::table('course')->get();
     }
 
     /**
@@ -81,9 +85,12 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //andito lahat nung form
     {
-        //
+        //save input
+        Student::create($request->all()); //model
+        return redirect()->route('students.index');
+
     }
 
     /**
@@ -131,6 +138,7 @@ class StudentController extends Controller
         //
     }
 }
+
 
 ------------------------------------------------------------------web.php
 
