@@ -25,7 +25,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Course;
+use App\Models\Course; //add for create function
 use App\Models\Student; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //----Query Builder----library (commands)
