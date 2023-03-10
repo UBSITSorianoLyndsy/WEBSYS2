@@ -69,7 +69,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $courses = DB::table('course')->get();
+        $courses = DB::table('course')->get(); //use instead of the shortcut because course will become courses
         
         //calls the form
         return view('students.students_create', compact('courses'));
