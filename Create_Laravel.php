@@ -131,3 +131,61 @@ class StudentController extends Controller
         //
     }
 }
+
+web.php
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+//call controller
+use App\Http\Controllers\StudentController; //name of class, calling the class
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepartmentController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
+//Route::get('/home', function () {
+//    return view('master_layout.layout');
+//});
+
+//Route::get('/students', function () {
+//  return view('students.students_list');
+//});
+
+//Route::get('/course', function () {
+//    return view('course.course_list');
+//});
+
+//Route::get('/department', function () {
+//    return view('department.department_list');
+//});
+
+//controller // call a resource 
+
+ //students ........................................................................................................................................................... students.index › StudentController@index  
+ // POST            students ........................................................................................................................................................... students.store › StudentController@store  
+ // GET|HEAD        students/create .................................................................................................................................................. students.create › StudentController@create  
+ // GET|HEAD        students/{student} ................................................................................................................................................... students.show › StudentController@show  
+ // PUT|PATCH       students/{student} ............................................................................................................................................... students.update › StudentController@update  
+  //DELETE          students/{student} ............................................................................................................................................. students.destroy › StudentController@destroy  
+ // GET|HEAD        students/{student}/edit .............................................................................................................................................. students.edit › StudentController@edit  
+
+Route::resource('students', StudentController::class);
+//'students' = execute the one inside the controller
+Route::resource('course', CourseController::class);
+Route::resource('department', DepartmentController::class);
