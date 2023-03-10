@@ -1,4 +1,4 @@
--------------------------------------------------------students_create -> view
+-------------------------------------------------------students_create.blade.php -> view/students/
 
 @extends('master_layout.layout')
 @section('title','Student Form')
@@ -20,7 +20,7 @@
     </form>
 @endsection
 
-                   ---------------------------------StudentController.php
+---------------------------------------------------StudentController.php
 
 <?php
 
@@ -132,7 +132,7 @@ class StudentController extends Controller
     }
 }
 
-web.php
+------------------------------------------------------------------web.php
 
 <?php
 
